@@ -31,6 +31,7 @@ import (
 	"github.com/containerd/containerd/errdefs"
 	"github.com/containerd/containerd/runtime/v2/logging"
 	"github.com/containerd/log"
+	"github.com/fsnotify/fsnotify"
 	"github.com/muesli/cancelreader"
 )
 
@@ -216,4 +217,16 @@ func loggerFunc(dataStore string) (logging.LoggerFunc, error) {
 		}
 		return nil
 	}, nil
+}
+
+func NewLogFileWatcher(dir string) (*fsnotify.Watcher, error) {
+	watcher, err := fsnotify.NewWatcher()
+	if err != nil {
+		return nil, fmt.Errorf("failed to create fsnotify watcher: %v", err)
+	}
+	if err = watcher.Add(dir); err != nil {
+		watcher.Close()
+		return nil, fmt.Errorf("failed to watch directory %q: %w", dir, err)
+	}
+	return watcher, nil
 }

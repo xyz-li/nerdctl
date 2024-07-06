@@ -36,6 +36,7 @@ require (
 	github.com/fahedouch/go-logrotate v0.2.1
 	github.com/fatih/color v1.17.0
 	github.com/fluent/fluent-logger-golang v1.9.0
+	github.com/fsnotify/fsnotify v1.7.0
 	github.com/ipfs/go-cid v0.4.1
 	github.com/mattn/go-isatty v0.0.20
 	github.com/mitchellh/mapstructure v1.5.0
@@ -66,8 +67,6 @@ require (
 	gotest.tools/v3 v3.5.1
 )
 
-require github.com/go-viper/mapstructure/v2 v2.0.0 // indirect
-
 require (
 	github.com/AdaLogics/go-fuzz-headers v0.0.0-20230811130428-ced1acdcaa24 // indirect
 	github.com/AdamKorcz/go-118-fuzz-build v0.0.0-20230306123547-8075edf89bb0 // indirect
@@ -87,6 +86,7 @@ require (
 	github.com/go-jose/go-jose/v3 v3.0.3 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
+	github.com/go-viper/mapstructure/v2 v2.0.0 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
