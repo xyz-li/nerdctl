@@ -38,10 +38,12 @@ func startTail(ctx context.Context, logName string, w *fsnotify.Watcher) (bool, 
 		case <-ctx.Done():
 			return false, fmt.Errorf("context cancelled")
 		case e := <-w.Events:
+			log.L.Infof("Received fsnotify watch, event: %v", e)
 			switch {
 			case e.Has(fsnotify.Write):
 				return false, nil
-			case e.Op.Has(fsnotify.Rename):
+			case e.Has(fsnotify.Create):
+				log.L.Infof("Received fsnotify watch, event: %v, baseName: %s, logName: %s", e, filepath.Base(e.Name), logName)
 				return filepath.Base(e.Name) == logName, nil
 			default:
 				log.L.Debugf("Received unexpected fsnotify event: %v, retrying", e)

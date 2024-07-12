@@ -42,7 +42,7 @@ func startTail(ctx context.Context, logName string, w *fsnotify.Watcher) (bool, 
 			switch {
 			case e.Has(fsnotify.Write):
 				return false, nil
-			case e.Op.Has(fsnotify.Create):
+			case e.Has(fsnotify.Create):
 				return filepath.Base(e.Name) == logName, nil
 			default:
 				log.L.Debugf("Received unexpected fsnotify event: %v, retrying", e)
